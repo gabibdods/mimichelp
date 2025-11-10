@@ -41,18 +41,19 @@ void loop()
 {
   // Student Node: Serial.printf does not work and prints weird characters to terminal
 
-  // Set position offset for ID 1
-  servos.setPositionOffset(1, 2000);
-  // Info: offset of 0, the max left is position 2528 and the max right is position 1147
-  // right now, the max left is position is 0 and the max right position is 
-
+  servos.setTargetPosition(1, 500);
+  while (servos.isMoving(1)) delay(50);
+/*
+  servos.setTargetPosition(1, 4000);
+  while (servos.isMoving(1)) delay(50);
+*/
   // Get position of ID 1 and print it
   position = servos.getCurrentPosition(1);
   Serial.println(position);
 
   // Get position of ID 4 and print it
-//  position = servos.getCurrentPosition(4);
-//  Serial.println(position);
+  position = servos.getCurrentPosition(4);
+  Serial.println(position);
 
   delay(500);
 }
