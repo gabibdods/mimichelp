@@ -42,7 +42,8 @@ void loop()
   // Student Node: Serial.printf does not work and prints weird characters to terminal
 
   // Set position offset for ID 1
-  servos.setPositionOffset(1, 2000);
+  //servos.setPositionOffset(1, 2000);
+
   // Info: offset of 0, the max left is position 2528 and the max right is position 1147
   // right now, the max left is position is 0 and the max right position is 
 

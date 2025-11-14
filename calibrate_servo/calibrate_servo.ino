@@ -35,25 +35,25 @@ void setup() {
   servos.setMode(0xFE, STSMode::POSITION);
 }
 
-int position;
+int position, pos;
 
 void loop()
 {
   // Student Node: Serial.printf does not work and prints weird characters to terminal
 
-  servos.setTargetPosition(1, 500);
-  while (servos.isMoving(1)) delay(50);
-/*
-  servos.setTargetPosition(1, 4000);
-  while (servos.isMoving(1)) delay(50);
-*/
+  // Set position offset for ID 1
+  //servos.setPositionOffset(1, 2000);
+
   // Get position of ID 1 and print it
   position = servos.getCurrentPosition(1);
-  Serial.println(position);
+
+  // Translate read value into percentage position to the right (100%) or to the left (-100%)
+  pos = map(position, 500, 3260, -100, 100);
+  Serial.println(pos);
 
   // Get position of ID 4 and print it
-  position = servos.getCurrentPosition(4);
-  Serial.println(position);
+  //position = servos.getCurrentPosition(4);
+  //Serial.println(position);
 
   delay(500);
 }
