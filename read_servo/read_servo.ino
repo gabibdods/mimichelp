@@ -3,6 +3,7 @@ https://github.com/matthieuvigne/STS_servos/blob/main/examples/SimpleMotion/Simp
 https://github.com/matthieuvigne/STS_servos/blob/main/src/STSServoDriver.h
 https://github.com/matthieuvigne/STS_servos/blob/main/src/STSServoDriver.cpp
 */
+
 #include <STSServoDriver.h>
 
 // FE-URT-1 TXD Pin -> ESP32 RX2 Pin (Pin 16)
@@ -15,8 +16,6 @@ https://github.com/matthieuvigne/STS_servos/blob/main/src/STSServoDriver.cpp
 #define TX2 16
 
 STSServoDriver servos;
-
-//byte SERVO_ID = 1; // ID of the servo currently being tested.
 
 void setup() {
   Serial.begin(115200); // print feedback
@@ -35,25 +34,39 @@ void setup() {
   servos.setMode(0xFE, STSMode::POSITION);
 }
 
-int position;
+// helper function to adapt a read position
+int adapt(int p) { return map(p, 500, 3260, -100, 100); }
+
+// helper function to adapt a percentage position to a position in the range of the servo
+int tweak(int p) { return map(p, -100, 100, 500, 3260); }
 
 void loop()
 {
   // Student Node: Serial.printf does not work and prints weird characters to terminal
 
-  // Set position offset for ID 1
-  //servos.setPositionOffset(1, 2000);
-
-  // Info: offset of 0, the max left is position 2528 and the max right is position 1147
-  // right now, the max left is position is 0 and the max right position is 
-
   // Get position of ID 1 and print it
-  position = servos.getCurrentPosition(1);
-  Serial.println(position);
+  Serial.print("ID 1: ");
+  Serial.print(map(servos.getCurrentPosition(1), 500, 3260, 100, -100));
 
-  // Get position of ID 4 and print it
-//  position = servos.getCurrentPosition(4);
-//  Serial.println(position);
+  // Correcting the offset of ID 2
+  servos.setPositionOffset(2, 1200);
 
+  // Correcting the offset of ID 3
+  servos.setPositionOffset(3, 1000);
+
+  // Get position of ID 2 and print it
+  Serial.print(", ID 2: ");
+  Serial.print(map(servos.getCurrentPosition(2), 4100, 1900, 100, -100));
+//  Serial.print(servos.getCurrentPosition(2));
+
+  // Get position of ID 3 and print it
+  Serial.print(", ID 3: ");
+  Serial.println(map(servos.getCurrentPosition(3), 1870, 3970, -100, 100));
+//  Serial.println(servos.getCurrentPosition(3));
+
+/*  // Get position of ID 4 and print it
+  Serial.print(", ID 4: ");
+  Serial.println(servos.getCurrentPosition(4));
+*/
   delay(500);
 }

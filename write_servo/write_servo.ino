@@ -38,7 +38,7 @@ void setup() {
 // placeholder var for position read and calibrated position (adapted from -100 to 100)
 int position, pos;
 
-// helper function to adapt a read position
+// helper function to adapt a percentage position to a proper position that will correspond to the motor's range
 int tweak(int p) { return map(p, -100, 100, 500, 3260); }
 
 void loop()

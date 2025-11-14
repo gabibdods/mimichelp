@@ -3,6 +3,7 @@ https://github.com/matthieuvigne/STS_servos/blob/main/examples/SimpleMotion/Simp
 https://github.com/matthieuvigne/STS_servos/blob/main/src/STSServoDriver.h
 https://github.com/matthieuvigne/STS_servos/blob/main/src/STSServoDriver.cpp
 */
+
 #include <STSServoDriver.h>
 
 // FE-URT-1 TXD Pin -> ESP32 RX2 Pin (Pin 16)
@@ -15,8 +16,6 @@ https://github.com/matthieuvigne/STS_servos/blob/main/src/STSServoDriver.cpp
 #define TX2 16
 
 STSServoDriver servos;
-
-//byte SERVO_ID = 1; // ID of the servo currently being tested.
 
 void setup() {
   Serial.begin(115200); // print feedback
