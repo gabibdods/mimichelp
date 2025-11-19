@@ -75,7 +75,7 @@ void loop()
   servos.setTargetPosition(1, tweak(-50));
   delay(500); while (servos.isMoving(1)) delay(50);
 
-  // You get the idea
+  // You get the idea...
   servos.setTargetPosition(1, tweak(-10));
   delay(500); while (servos.isMoving(1)) delay(50);
 

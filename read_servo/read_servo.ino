@@ -42,11 +42,7 @@ int tweak(int p) { return map(p, -100, 100, 500, 3260); }
 
 void loop()
 {
-  // Student Node: Serial.printf does not work and prints weird characters to terminal
-
-  // Get position of ID 1 and print it
-  Serial.print("ID 1: ");
-  Serial.print(map(servos.getCurrentPosition(1), 500, 3260, 100, -100));
+  // Student Note: Serial.printf does not work and prints weird characters to terminal
 
   // Correcting the offset of ID 2
   servos.setPositionOffset(2, 1200);
@@ -54,19 +50,17 @@ void loop()
   // Correcting the offset of ID 3
   servos.setPositionOffset(3, 1000);
 
+  // Get position of ID 1 and print it
+  Serial.print("ID 1: ");
+  Serial.print(map(servos.getCurrentPosition(1), 500, 3260, 100, -100)); // 500 is the max left position and 3260 is the max right position; these values should be var gotten from a calibration script
+
   // Get position of ID 2 and print it
   Serial.print(", ID 2: ");
-  Serial.print(map(servos.getCurrentPosition(2), 4100, 1900, 100, -100));
-//  Serial.print(servos.getCurrentPosition(2));
+  Serial.print(map(servos.getCurrentPosition(2), 4100, 1900, 100, -100)); // 4100 is the max backward position and 1900 is the max forward position; these values should be variables gotten from a calibration script
 
   // Get position of ID 3 and print it
   Serial.print(", ID 3: ");
-  Serial.println(map(servos.getCurrentPosition(3), 1870, 3970, -100, 100));
-//  Serial.println(servos.getCurrentPosition(3));
+  Serial.println(map(servos.getCurrentPosition(3), 1870, 3970, -100, 100)); // 1870 is the max downward position and 3970 is the max upward position; these values should be variables gotten from a calibration script
 
-/*  // Get position of ID 4 and print it
-  Serial.print(", ID 4: ");
-  Serial.println(servos.getCurrentPosition(4));
-*/
   delay(500);
 }
