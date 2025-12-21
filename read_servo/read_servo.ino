@@ -71,7 +71,7 @@ void loop()
     offsetServo2 = SerialBT.parseInt(); //should be 1200
     offsetServo3 = SerialBT.parseInt(); //should be 1000
 
-    while (SerialBT.available() > 0) SerialBT.read()  // Serial flush to stop reading buffer
+    while (SerialBT.available() > 0) SerialBT.read();  // Serial flush to stop reading buffer
   }
 
   servos.setPositionOffset(1, offsetServo1); // Correcting the offset of ID 1
